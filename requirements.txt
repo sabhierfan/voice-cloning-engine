@@ -1,0 +1,7 @@
+numpy
+sounddevice
+torch
+
+# Applio (https://github.com/IAHispano/Applio) is a separate install --
+# clone it and follow its own setup instructions, then point APPLIO_DIR
+# at it. Not vendored here.

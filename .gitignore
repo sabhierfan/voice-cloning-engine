@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Audio, datasets, and trained model artifacts are never meant to be
+# committed here -- they're private by nature.
+*.wav
+*.mp3
+*.mpeg
+*.pth
+*.index
+data/
+weights/
+logs/
+sweep_output/
