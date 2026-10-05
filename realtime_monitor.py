@@ -24,6 +24,11 @@ import sounddevice as sd
 
 def run(applio_dir: str, model_path: str, index_path: str, pitch: int,
         index_rate: float, chunk: int, gain: float):
+    # Resolve user paths before chdir-ing into Applio, otherwise relative
+    # paths like ./weights/my_voice.pth get looked up inside the Applio dir.
+    model_path = os.path.abspath(model_path)
+    index_path = os.path.abspath(index_path)
+
     os.chdir(applio_dir)
     sys.path.append(applio_dir)
     from rvc.realtime.core import VoiceChanger

@@ -16,6 +16,10 @@ import sys
 
 
 def train(applio_dir: str, model_name: str, dataset_path: str, epochs: int, batch_size: int):
+    # Resolve the dataset path before chdir-ing into Applio, otherwise a
+    # relative path like ./data/my_voice gets looked up inside the Applio dir.
+    dataset_path = os.path.abspath(dataset_path)
+
     os.chdir(applio_dir)
     sys.path.append(applio_dir)
     from core import run_preprocess_script, run_extract_script, run_train_script
