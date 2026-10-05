@@ -21,6 +21,13 @@ CONFIGS = [
 
 
 def sweep(applio_dir: str, input_path: str, model_path: str, index_path: str, output_dir: str):
+    # Resolve user paths before chdir-ing into Applio, otherwise relative
+    # paths (and the ./sweep_output default) resolve inside the Applio dir.
+    input_path = os.path.abspath(input_path)
+    model_path = os.path.abspath(model_path)
+    index_path = os.path.abspath(index_path)
+    output_dir = os.path.abspath(output_dir)
+
     os.chdir(applio_dir)
     sys.path.append(applio_dir)
     from core import run_infer_script

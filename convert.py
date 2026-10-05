@@ -15,6 +15,13 @@ import time
 
 def convert(applio_dir: str, input_path: str, model_path: str, index_path: str,
             output_path: str, pitch: int, index_rate: float):
+    # Resolve user paths before chdir-ing into Applio, otherwise relative
+    # paths like ./weights/my_voice.pth get looked up inside the Applio dir.
+    input_path = os.path.abspath(input_path)
+    model_path = os.path.abspath(model_path)
+    index_path = os.path.abspath(index_path) if index_path else ""
+    output_path = os.path.abspath(output_path)
+
     os.chdir(applio_dir)
     sys.path.append(applio_dir)
     from core import run_infer_script
